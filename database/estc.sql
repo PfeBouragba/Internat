@@ -407,7 +407,7 @@ CREATE TABLE `decharge` (
   `valide_internat` int NOT NULL DEFAULT '0',
   `valide_economique` int NOT NULL DEFAULT '0',
   `valide_administration` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE COLLATE utf8mb4_general_ci
 
 --
 -- Dumping data for table `decharge`
@@ -448,7 +448,7 @@ CREATE TABLE `degats` (
   `commentaire` text NOT NULL,
   `report` enum('Payé','Non Payé','Retourné','Non Retourné') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Non Payé',
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `degats`
@@ -476,7 +476,7 @@ CREATE TABLE `historique_internat` (
   `old_room` int DEFAULT NULL,
   `new_room` int DEFAULT NULL,
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `historique_internat`
@@ -507,7 +507,7 @@ CREATE TABLE `internat` (
   `status` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `genre` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `valide` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `internat`
@@ -547,7 +547,7 @@ CREATE TABLE `paiements` (
   `trimestre` int DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
   `date_paiement` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `paiements`
@@ -576,7 +576,7 @@ CREATE TABLE `rooms` (
   `type` enum('room','stock') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'room',
   `num_students` int DEFAULT NULL,
   `last_updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rooms`
@@ -824,7 +824,7 @@ CREATE TABLE `settings` (
   `id` int NOT NULL,
   `setting_name` varchar(255) DEFAULT NULL,
   `setting_value` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings`
@@ -847,7 +847,7 @@ CREATE TABLE `ticket_history` (
   `day_collected` date DEFAULT NULL,
   `week_start_date` date DEFAULT NULL,
   `week_end_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ticket_history`

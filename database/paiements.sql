@@ -36,7 +36,7 @@ CREATE TABLE `paiements` (
   `trimestre` int DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
   `date_paiement` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `paiements`

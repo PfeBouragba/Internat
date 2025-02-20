@@ -42,7 +42,7 @@ CREATE TABLE `decharge` (
   `valide_internat` int NOT NULL DEFAULT '0',
   `valide_economique` int NOT NULL DEFAULT '0',
   `valide_administration` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `decharge`

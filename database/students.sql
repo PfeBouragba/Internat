@@ -42,7 +42,7 @@ CREATE TABLE `students` (
   `filliere` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'Génie informatique',
   `annee_scolaire` varchar(10) COLLATE utf8mb4_general_ci DEFAULT '2',
   `genre` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
