@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `decharge` (
   `id_demande` int NOT NULL,
   `student_id` int NOT NULL,
-  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Pending',
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
   `read_departement` int NOT NULL DEFAULT '0',
   `read_internat` int NOT NULL DEFAULT '0',
   `read_economique` int NOT NULL DEFAULT '0',
