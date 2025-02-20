@@ -372,13 +372,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateNumStudentsForAllRooms` ()   
         SET count_students = (
             SELECT COUNT(*) 
             FROM users 
-            WHERE room_number = room_var AND genre = building_var COLLATE utf8mb4_0900_ai_ci
+            WHERE room_number = room_var AND genre = building_var COLLATE utf8mb4_general_ci
         );
 
         -- Update num_students in the rooms table
         UPDATE rooms
         SET num_students = count_students
-        WHERE room = room_var AND building = building_var COLLATE utf8mb4_0900_ai_ci;
+        WHERE room = room_var AND building = building_var COLLATE utf8mb4_general_ci;
     END LOOP;
 
     -- Close the cursor
@@ -396,7 +396,7 @@ DELIMITER ;
 CREATE TABLE `decharge` (
   `id_demande` int NOT NULL,
   `student_id` int NOT NULL,
-  `status` enum('Validé','En attente') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'En attente',
+  `status` enum('Validé','En attente') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'En attente',
   `read_departement` int NOT NULL DEFAULT '0',
   `read_internat` int NOT NULL DEFAULT '0',
   `read_economique` int NOT NULL DEFAULT '0',
@@ -442,11 +442,11 @@ CREATE TABLE `degats` (
   `user_id` int DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   `cin` varchar(8) DEFAULT NULL,
-  `type` enum('Incident','Emprunt') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `type` enum('Incident','Emprunt') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `materiel` varchar(255) DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
   `commentaire` text NOT NULL,
-  `report` enum('Payé','Non Payé','Retourné','Non Retourné') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Non Payé',
+  `report` enum('Payé','Non Payé','Retourné','Non Retourné') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Non Payé',
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
@@ -573,7 +573,7 @@ CREATE TABLE `rooms` (
   `room_id` int NOT NULL,
   `room` int DEFAULT NULL,
   `building` varchar(255) DEFAULT NULL,
-  `type` enum('room','stock') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'room',
+  `type` enum('room','stock') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'room',
   `num_students` int DEFAULT NULL,
   `last_updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
@@ -897,24 +897,24 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `cin`, `name`, `status`, `role`, `password`, `email`, `image`, `room_number`, `date_naissance`, `pays`, `ville`, `arrondissement`, `tel`, `filliere`, `annee_scolaire`, `genre`) VALUES
 (1, 'AGI201', 'Adam Ait Oufkir', 'interne', 'student', 'a', 'adamoufkir05@gmail.com', '../images/lklb.jpeg', 1, '2005-03-01', '', 'Casablanca', NULL, '+212673155179', 'Genie Informatique', '2', 'boy'),
-(2, 'AGI202', 'Ayoub Moutik', 'externe', 'student', 'a', 'whoami9630@gmail.com', '../images/moulchi.jpeg', NULL, '2004-08-31', 'Morocco (‫المغرب‬‎)', 'Casablanca', 'Hay Hassani', '0660002406', 'Génie informatique', '2', 'boy'),
+(2, 'AGI202', 'Ayoub Moutik', 'externe', 'student', 'a', 'whoami9630@gmail.com', '../images/moulchi.jpeg', NULL, '2004-08-31', 'Morocco', 'Casablanca', 'Hay Hassani', '0660002406', 'Génie informatique', '2', 'boy'),
 (3, 'AGI203', 'Hitler The Cat', 'admin', 'super_admin', 'a', 'hitler_anti_jews@gmail.com', '../images/hitler.jpg', NULL, NULL, '', 'Ra7ma', NULL, '6969696969', 'Génie informatique', '2', 'boy'),
 (4, 'AGI204', 'Yassine Rmidi', 'interne', 'student', 'a', 'yrmidi7@gmail.com', '../images/yassuine.jpeg', 1, NULL, '', 'Casablanca', NULL, '06060606', 'Genie Informatique', '2', 'boy'),
 (5, 'AGI205', 'Adnane Elkihel', 'interne', 'student', 'a', 'adnaneelkihel63@gmail.com', '../images/adnoune.jpeg', 6, NULL, '', 'Casablanca', NULL, NULL, 'Genie Informatique', '2', 'boy'),
 (6, 'AGI206', 'Aymane Laaroui', 'externe', 'student', 'a', 'laarouiaymane@gmail.com', '../images/laaroui.jpeg', NULL, NULL, '', 'k', NULL, NULL, 'Genie Informatique', '2', 'boy'),
 (7, 'AGI207', 'Yassine EL MESBAHY ', 'interne', 'student', 'a', 'yassineelmesbahy226@gmail.com', '../images/7alla9.jpeg', 1, NULL, '', 'Casablanca', NULL, NULL, 'Genie Informatique', '2', 'boy'),
 (8, 'AGI208', 'Amine Aghoudid ', 'interne', 'student', 'a', 'amine.aghoudide@gmail.com', '../images/ms3oud.jpeg', 1, NULL, '', 'Casablanca', NULL, NULL, 'Genie Informatique', '2', 'boy'),
-(9, 'AGI209', 'Houssam Abdellah Louazna ', 'externe', 'student', 'a', 'fatalmodalal@gmail.com', '../images/louazna.jpeg', NULL, '2024-04-01', 'Morocco (‫المغرب‬‎)', 'Ra7ma', NULL, '06', 'Genie Informatique', '2', 'boy'),
+(9, 'AGI209', 'Houssam Abdellah Louazna ', 'externe', 'student', 'a', 'fatalmodalal@gmail.com', '../images/louazna.jpeg', NULL, '2024-04-01', 'Morocco', 'Ra7ma', NULL, '06', 'Genie Informatique', '2', 'boy'),
 (11, 'AGI211', 'Oussama Arhannaj', 'interne', 'student', NULL, 'Oussamaarhannaj66@gmail.com', '../images/oussama.jpeg', 2, NULL, '', NULL, NULL, NULL, 'Génie informatique', '2', 'boy'),
 (12, 'AGI212', 'Mohammed Boukhatem', 'interne', 'student', NULL, 'mohammedboukhatem069@gmail.com', '../images/boukhatem.jpeg', 2, NULL, '', NULL, NULL, NULL, 'Génie informatique', '2', 'boy'),
-(13, 'AGI213', 'Noaman Makhlouf', 'interne', 'student', 'a', 'makhloufnoaman58@gmail.com', '../images/noaman.jpeg', 6, '2024-04-02', 'Morocco (‫المغرب‬‎)', 'Khmissat', NULL, '06', 'Génie informatique', '2', 'boy'),
+(13, 'AGI213', 'Noaman Makhlouf', 'interne', 'student', 'a', 'makhloufnoaman58@gmail.com', '../images/noaman.jpeg', 6, '2024-04-02', 'Morocco', 'Khmissat', NULL, '06', 'Génie informatique', '2', 'boy'),
 (14, 'AGI214', 'Yassine ElFal', 'externe', 'student', NULL, 'yassineelfal8@gmail.com', '../images/sbata.jpeg', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique', '2', 'boy'),
 (15, 'AGI215', 'Chatira', 'externe', 'student', 'a', 'chatira@gmail.com', '../images/default_user.png', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique', '2', 'girl'),
-(16, 'AGI216', 'Othman Hamida', 'interne', 'student', 'a', 'hamida@gmail.com', '../images/hamida.jpeg', 2, '2024-03-05', 'Morocco (‫المغرب‬‎)', 'Casablanca', 'Al Fida', '06', 'Genie Informatique', '1', 'boy'),
-(17, 'AGI217', 'Hamza El Kaoui', 'interne', 'student', 'a', 'hamzaelkaouii04@gmail.com', '../images/lorem.jpeg', 3, '2024-03-27', 'Morocco (‫المغرب‬‎)', 'Casablanca', 'Hay Hassani', '0606060606', 'Genie Informatique', '2', 'boy'),
-(18, 'AGI218', 'Test 1', 'interne', 'student', 'a', 'test1@example.com', '../images/hitler.jpg', 101, '2024-02-09', 'Morocco (‫المغرب‬‎)', 'Ra7ma', 'Hay Hassani', '0612345678', 'Génie informatique', '2', 'girl'),
-(19, 'AGI219', 'Test 2', 'interne', 'student', 'a', 'test2@gmail.com', '../images/hitler.jpg', 101, '2024-02-09', 'Morocco (‫المغرب‬‎)', 'Casablanca', 'Anfa', '06', 'Génie informatique', '2', 'girl'),
-(20, 'AGI220', 'Test 3', 'interne', 'student', 'a', 'test3@example.com', '../images/hitler.jpg', 101, '2000-03-03', 'Morocco (‫المغرب‬‎)', 'Casablanca', NULL, '1234567893', 'Génie informatique', '2', 'girl'),
+(16, 'AGI216', 'Othman Hamida', 'interne', 'student', 'a', 'hamida@gmail.com', '../images/hamida.jpeg', 2, '2024-03-05', 'Morocco', 'Casablanca', 'Al Fida', '06', 'Genie Informatique', '1', 'boy'),
+(17, 'AGI217', 'Hamza El Kaoui', 'interne', 'student', 'a', 'hamzaelkaouii04@gmail.com', '../images/lorem.jpeg', 3, '2024-03-27', 'Morocco', 'Casablanca', 'Hay Hassani', '0606060606', 'Genie Informatique', '2', 'boy'),
+(18, 'AGI218', 'Test 1', 'interne', 'student', 'a', 'test1@example.com', '../images/hitler.jpg', 101, '2024-02-09', 'Morocco', 'Ra7ma', 'Hay Hassani', '0612345678', 'Génie informatique', '2', 'girl'),
+(19, 'AGI219', 'Test 2', 'interne', 'student', 'a', 'test2@gmail.com', '../images/hitler.jpg', 101, '2024-02-09', 'Morocco', 'Casablanca', 'Anfa', '06', 'Génie informatique', '2', 'girl'),
+(20, 'AGI220', 'Test 3', 'interne', 'student', 'a', 'test3@example.com', '../images/hitler.jpg', 101, '2000-03-03', 'Morocco', 'Casablanca', NULL, '1234567893', 'Génie informatique', '2', 'girl'),
 (21, 'AGI221', 'Test 4', 'externe', 'student', 'a', 'test4@example.com', '../images/default_user.png', NULL, '2000-04-04', '', 'Casablanca', NULL, '1234567894', 'Génie informatique', '1', 'girl'),
 (22, 'AGI222', 'Test 5', 'externe', 'student', 'a', 'test5@example.com', '../images/default_user.png', NULL, '2000-05-05', '', 'Mohamadia', NULL, '1234567895', 'Génie informatique', '2', 'girl'),
 (23, 'AGI223', 'Test 6', 'interne', 'student', 'a', 'test6@example.com', '../images/default_user.png', 101, '2000-06-06', '', 'El Jadida', NULL, '1234567896', 'Génie informatique', '1', 'girl'),
