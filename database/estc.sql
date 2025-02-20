@@ -1078,11 +1078,11 @@ INSERT INTO `users` (`id`, `cin`, `name`, `status`, `role`, `password`, `email`,
 (197, 'GI1048', '48-GI1', 'externe', 'student', NULL, '48-GI1@gmail.com', '../images/default_user.png', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique ', '1', 'girl'),
 (198, 'GI1049', '49-GI1', 'externe', 'student', NULL, '49-GI1@gmail.com', '../images/default_user.png', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique ', '1', 'boy'),
 (199, 'GI1050', '50-GI1', 'externe', 'student', NULL, '50-GI1@gmail.com', '../images/default_user.png', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique ', '1', 'girl'),
-(200, 'GI2001', '1-GI2', 'externe', 'student', 'a', '1-GI2@gmail.com', '../images/default_user.png', NULL, NULL, 'Morocco (‫المغرب‬‎)', 'Rabat', NULL, NULL, 'Génie informatique', '2', 'boy'),
-(201, 'GI2002', '2-GI2', 'externe', 'student', 'a', '2-GI2@gmail.com', '../images/hitler.jpg', NULL, '2024-02-09', 'Morocco (‫المغرب‬‎)', 'Casablanca', 'Hay Mohammadi', '06', 'Génie informatique', '2', 'boy'),
-(202, 'GI2003', '3-GI2', 'externe', 'student', 'a', '3-GI2@gmail.com', '../images/adnoune.jpeg', NULL, '2024-02-09', 'Mauritania (‫موريتانيا‬‎)', 'Casablanca', NULL, '06060606', 'Génie informatique', '2', 'boy'),
-(203, 'GI2004', '4-GI2', 'externe', 'student', 'a', '4-GI2@gmail.com', '../images/default_user.png', NULL, NULL, 'Morocco (‫المغرب‬‎)', 'Casablanca', NULL, NULL, 'Génie informatique', '2', 'girl'),
-(204, 'GI2005', '5-GI2', 'externe', 'student', 'a', '5-GI2@gmail.com', '../images/moulchi.jpeg', NULL, '2024-02-01', 'Morocco (‫المغرب‬‎)', 'Casablanca', 'Hay Mohammadi', '06060606', 'Génie informatique', '2', 'boy'),
+(200, 'GI2001', '1-GI2', 'externe', 'student', 'a', '1-GI2@gmail.com', '../images/default_user.png', NULL, NULL, 'Morocco', 'Rabat', NULL, NULL, 'Génie informatique', '2', 'boy'),
+(201, 'GI2002', '2-GI2', 'externe', 'student', 'a', '2-GI2@gmail.com', '../images/hitler.jpg', NULL, '2024-02-09', 'Morocco', 'Casablanca', 'Hay Mohammadi', '06', 'Génie informatique', '2', 'boy'),
+(202, 'GI2003', '3-GI2', 'externe', 'student', 'a', '3-GI2@gmail.com', '../images/adnoune.jpeg', NULL, '2024-02-09', 'Mauritania', 'Casablanca', NULL, '06060606', 'Génie informatique', '2', 'boy'),
+(203, 'GI2004', '4-GI2', 'externe', 'student', 'a', '4-GI2@gmail.com', '../images/default_user.png', NULL, NULL, 'Morocco', 'Casablanca', NULL, NULL, 'Génie informatique', '2', 'girl'),
+(204, 'GI2005', '5-GI2', 'externe', 'student', 'a', '5-GI2@gmail.com', '../images/moulchi.jpeg', NULL, '2024-02-01', 'Morocco', 'Casablanca', 'Hay Mohammadi', '06060606', 'Génie informatique', '2', 'boy'),
 (205, 'GI2006', '6-GI2', 'externe', 'student', NULL, '6-GI2@gmail.com', '../images/default_user.png', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique', '2', 'girl'),
 (206, 'GI2007', '7-GI2', 'externe', 'student', NULL, '7-GI2@gmail.com', '../images/default_user.png', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique', '2', 'boy'),
 (207, 'GI2008', '8-GI2', 'externe', 'student', NULL, '8-GI2@gmail.com', '../images/default_user.png', NULL, NULL, '', NULL, NULL, NULL, 'Génie informatique', '2', 'girl'),
@@ -1355,18 +1355,18 @@ CREATE TRIGGER `updateNumStudentsAfterUpdate` AFTER UPDATE ON `users` FOR EACH R
     SET num_students = (
         SELECT COUNT(*)
         FROM users
-        WHERE room_number = OLD.room_number AND genre = OLD.genre COLLATE utf8mb4_0900_ai_ci
+        WHERE room_number = OLD.room_number AND genre = OLD.genre COLLATE=utf8mb4_general_ci
     )
-    WHERE room = OLD.room_number AND building = OLD.genre COLLATE utf8mb4_0900_ai_ci;
+    WHERE room = OLD.room_number AND building = OLD.genre COLLATE=utf8mb4_general_ci;
 
     -- Update the new room's num_students
     UPDATE rooms
     SET num_students = (
         SELECT COUNT(*)
         FROM users
-        WHERE room_number = NEW.room_number AND genre = NEW.genre COLLATE utf8mb4_0900_ai_ci
+        WHERE room_number = NEW.room_number AND genre = NEW.genre COLLATE=utf8mb4_general_ci
     )
-    WHERE room = NEW.room_number AND building = NEW.genre COLLATE utf8mb4_0900_ai_ci;
+    WHERE room = NEW.room_number AND building = NEW.genre COLLATE=utf8mb4_general_ci;
 END
 $$
 DELIMITER ;
