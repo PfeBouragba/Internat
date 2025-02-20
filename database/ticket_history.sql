@@ -33,7 +33,7 @@ CREATE TABLE `ticket_history` (
   `student_name` varchar(255) NOT NULL,
   `week_start_date` date NOT NULL,
   `week_end_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ticket_history`
